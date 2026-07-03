@@ -28,7 +28,7 @@
             --transition-soft: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* --- THEME MÀU SẮC ĐẶC BIỆT --- */
+        /* --- THEME MÀU SẮC CHỦ ĐẠO --- */
         body.theme-strawberry {
             --bg-gradient: linear-gradient(135deg, #FFE5EC 0%, #FFCAD4 100%);
         }
@@ -107,7 +107,7 @@
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .logo-emoji {
             font-size: 2.2rem;
@@ -182,7 +182,7 @@
 
         /* --- CONTAINER CHÍNH --- */
         main {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px 80px 20px;
         }
@@ -212,6 +212,13 @@
             position: relative;
             overflow: hidden;
         }
+        @media (max-width: 768px) {
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+        }
         .profile-card::before {
             content: "✨";
             position: absolute;
@@ -224,21 +231,20 @@
             0%, 100% { transform: scale(1); opacity: 0.6; }
             50% { transform: scale(1.2); opacity: 1; }
         }
-        .profile-avatar {
+        .profile-avatar-wrapper {
             flex-shrink: 0;
-            width: 180px;
-            height: 180px;
-            background: var(--pastel-pink);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            border: 5px solid var(--white);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             position: relative;
         }
-        .profile-avatar::after {
+        .profile-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            object-fit: cover;
+            background-color: var(--pastel-pink);
+        }
+        .profile-avatar-wrapper::after {
             content: "🎓";
             position: absolute;
             bottom: 5px;
@@ -282,6 +288,7 @@
             padding: 12px 15px;
             border-radius: 15px;
             border-left: 4px solid var(--pastel-pink);
+            text-align: left;
         }
         .info-label {
             font-size: 0.8rem;
@@ -299,9 +306,14 @@
         /* Thẻ mục tiêu */
         .goals-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 25px;
             margin-top: 30px;
+        }
+        @media (min-width: 768px) {
+            .goals-section {
+                grid-template-columns: 1fr 1fr;
+            }
         }
         .goal-box {
             background: var(--white);
@@ -333,6 +345,7 @@
             padding-left: 20px;
             margin-bottom: 8px;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
         .goal-box li::before {
             content: "🌸";
@@ -445,13 +458,14 @@
             grid-template-columns: 1fr;
             gap: 20px;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 992px) {
             .project-body {
-                grid-template-columns: 3fr 2fr;
+                grid-template-columns: 5fr 4fr;
             }
         }
         .project-desc h4 {
             color: var(--text-dark);
+            margin-top: 10px;
             margin-bottom: 5px;
             font-size: 1rem;
         }
@@ -469,6 +483,7 @@
             font-size: 0.8rem;
             font-weight: 600;
             margin-right: 5px;
+            margin-bottom: 5px;
         }
 
         /* Khu vực Demo Tương Tác cho mỗi Bài tập */
@@ -476,8 +491,8 @@
             background: #FAF8FF;
             border: 2px dashed var(--pastel-pink);
             border-radius: 18px;
-            padding: 15px;
-            min-height: 180px;
+            padding: 18px;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -487,26 +502,27 @@
             text-transform: uppercase;
             font-weight: 700;
             color: #9A8C98;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 5px;
         }
 
-        /* --- CÁC ĐẶC TÍNH TƯƠNG TÁC CHUYÊN SÂU --- */
+        /* --- CÁC ĐẶC TÍNH TƯƠNG TÁC CHI TIẾT --- */
         
         /* 1. Folder Tree (Bài 1) */
         .folder-tree {
             user-select: none;
             font-family: monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         .folder {
             cursor: pointer;
-            padding: 3px 5px;
+            padding: 4px 6px;
             border-radius: 5px;
             display: inline-block;
             transition: background 0.2s;
+            font-weight: bold;
         }
         .folder:hover { background: var(--pastel-pink-light); }
         .folder::before {
@@ -558,19 +574,22 @@
         .search-bar-sim button {
             background: var(--pastel-blue);
             border: none;
-            padding: 3px 10px;
+            padding: 3px 12px;
             border-radius: 15px;
             cursor: pointer;
             font-size: 0.8rem;
+            font-weight: bold;
         }
         .search-result-sim {
             background: white;
-            padding: 10px;
+            padding: 12px;
             border-radius: 12px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.03);
             font-size: 0.8rem;
             display: none;
             animation: fadeIn 0.3s forwards;
+            max-height: 200px;
+            overflow-y: auto;
         }
         .craap-badge {
             background: var(--pastel-green);
@@ -582,12 +601,26 @@
         }
 
         /* 3. Prompt Comparative Toggle (Bài 3) */
+        .prompt-switch-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .task-selector {
+            width: 100%;
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid var(--pastel-purple);
+            font-size: 0.85rem;
+            font-weight: 600;
+            background-color: #fff;
+            outline: none;
+        }
         .prompt-switch {
             display: flex;
             background: #eee;
             border-radius: 15px;
             padding: 3px;
-            margin-bottom: 10px;
         }
         .prompt-opt {
             flex: 1;
@@ -605,17 +638,19 @@
         }
         .prompt-text-display {
             background: #fff;
-            padding: 10px;
+            padding: 12px;
             border-radius: 12px;
             font-size: 0.8rem;
-            min-height: 80px;
+            min-height: 140px;
             border: 1px solid #E4E7EB;
+            overflow-y: auto;
+            line-height: 1.5;
         }
 
         /* 4. Interactive Group Work Board (Bài 4) */
         .kanban-board {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
         .kanban-col {
             flex: 1;
@@ -625,7 +660,7 @@
             border: 1px solid #EAEAEA;
         }
         .kanban-col h5 {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-align: center;
             margin-bottom: 8px;
             padding-bottom: 3px;
@@ -635,11 +670,12 @@
             background: var(--white);
             padding: 6px;
             border-radius: 8px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             margin-bottom: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             cursor: pointer;
             transition: transform 0.2s;
+            border-left: 3px solid var(--pastel-pink);
         }
         .kanban-card:hover { transform: translateY(-2px); }
 
@@ -652,41 +688,63 @@
         }
         .artwork-canvas {
             width: 100%;
-            height: 120px;
-            border-radius: 12px;
-            background: linear-gradient(45deg, #FFB7B2, #FFDAC1);
+            height: 150px;
+            border-radius: 15px;
+            background: #FFF9F2;
+            border: 3px solid #FFEBE0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            box-shadow: inset 0 0 15px rgba(255,255,255,0.4);
+            padding: 10px;
+            text-align: center;
             transition: var(--transition-soft);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
+        }
+        .artwork-icon {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            animation: bounce 3s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .artwork-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
         }
         .ai-controls {
             display: flex;
             gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .ai-style-btn {
             background: white;
             border: 1.5px solid var(--pastel-pink);
-            padding: 3px 8px;
+            padding: 4px 10px;
             font-size: 0.75rem;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-soft);
         }
         .ai-style-btn.active {
             background: var(--pastel-pink);
+            color: var(--text-dark);
         }
 
         /* 6. Ethical AI Accordion (Bài 6) */
         .ethics-list {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
         }
         .ethics-header {
             background: #fff;
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 8px;
             font-size: 0.8rem;
             font-weight: 600;
@@ -694,13 +752,18 @@
             border-left: 3px solid var(--pastel-green);
             display: flex;
             justify-content: space-between;
+            transition: var(--transition-soft);
+        }
+        .ethics-header:hover {
+            background: var(--pastel-green-light);
         }
         .ethics-body {
             font-size: 0.75rem;
-            padding: 5px 12px;
+            padding: 8px 12px;
             display: none;
             background: rgba(255,255,255,0.5);
             border-radius: 0 0 8px 8px;
+            line-height: 1.5;
         }
         .ethics-body.active { display: block; }
 
@@ -812,7 +875,6 @@
         }
         footer p { margin-bottom: 5px; }
 
-        /* Hiệu ứng Fade In và Chuyển động chung */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -828,9 +890,9 @@
     <header>
         <div class="header-container">
             <div class="logo-area">
-                <div class="logo-emoji">🧸</div>
+                <div class="logo-emoji">🎀</div>
                 <div class="logo-text">
-                    <h1>Thu Trang's Space</h1>
+                    <h1>Thu Trang's Corner</h1>
                     <span>Digital Portfolio</span>
                 </div>
             </div>
@@ -843,10 +905,10 @@
 
             <!-- Nút chỉnh tông màu sắc chủ đạo -->
             <div class="theme-switcher" title="Đổi tone màu yêu thích">
-                <div class="theme-dot dot-default" onclick="changeTheme('default')"></div>
-                <div class="theme-dot dot-strawberry" onclick="changeTheme('strawberry')"></div>
-                <div class="theme-dot dot-mint" onclick="changeTheme('mint')"></div>
-                <div class="theme-dot dot-sky" onclick="changeTheme('sky')"></div>
+                <div class="theme-dot" style="background: linear-gradient(to right, #FFF5F5, #EEF1FF);" onclick="changeTheme('default')"></div>
+                <div class="theme-dot" style="background: #FFCAD4;" onclick="changeTheme('strawberry')"></div>
+                <div class="theme-dot" style="background: #C1F1C7;" onclick="changeTheme('mint')"></div>
+                <div class="theme-dot" style="background: #B5E2FA;" onclick="changeTheme('sky')"></div>
             </div>
         </div>
     </header>
@@ -856,11 +918,14 @@
         <!-- ================= TRANG GIỚI THIỆU (ABOUT ME) ================= -->
         <section id="about" class="tab-content active">
             <div class="profile-card">
-                <div class="profile-avatar">👧</div>
+                <div class="profile-avatar-wrapper">
+                    <!-- Ảnh đại diện Hình 1.jpg do người dùng upload -->
+                    <img src="Hình 1.jpg" alt="Phạm Thị Thu Trang" class="profile-avatar" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=180&auto=format&fit=crop&q=60';">
+                </div>
                 <div class="profile-info">
                     <h2>Phạm Thị Thu Trang</h2>
-                    <span class="profile-tagline">Học viên xuất sắc & Người yêu thích ngôn ngữ</span>
-                    <p>Chào bạn thân mến! Mình hiện là sinh viên khoa Tiếng Anh tại ULIS. Trang web nhỏ xinh này là nơi mình hệ thống hóa lại hành trình học tập, ứng dụng các công cụ kỹ thuật số thông minh và trí tuệ nhân tạo (AI) để thăng hoa hơn trong học thuật.</p>
+                    <span class="profile-tagline">Tân sinh viên Ngôn ngữ & Văn hoá Anh | ULIS</span>
+                    <p>Chào mừng thầy cô và các bạn đã ghé thăm không gian số của mình! Là một sinh viên chuyên ngành tiếng Anh tại ULIS, bước vào năm nhất với nhiều môn học lý thuyết và thuật ngữ khó như Ngôn ngữ học hay Hình thái học, mình đã học cách biến công nghệ và trí tuệ nhân tạo (AI) thành người trợ lý đắc lực để tối ưu hóa việc tự học, sáng tạo nội dung hiệu quả và thúc đẩy tư duy phản biện.</p>
                     
                     <div class="info-grid">
                         <div class="info-item">
@@ -873,7 +938,7 @@
                         </div>
                         <div class="info-item">
                             <div class="info-label">Trường học</div>
-                            <div class="info-val">Trường ĐH Ngoại ngữ - ĐHQGHN</div>
+                            <div class="info-val">Đại học Ngoại ngữ - ĐHQGHN</div>
                         </div>
                     </div>
                 </div>
@@ -881,29 +946,29 @@
 
             <div class="goals-section">
                 <div class="goal-box learning-goal">
-                    <h3>🎯 Mục tiêu học tập</h3>
+                    <h3>🎯 Định hướng phát triển & Học tập</h3>
                     <ul>
-                        <li>Nắm bắt cơ chế hoạt động của các công cụ công nghệ mới.</li>
-                        <li>Ứng dụng linh hoạt Generative AI (AI tạo sinh) vào phân tích ngữ nghĩa, dịch thuật tiếng Anh.</li>
-                        <li>Nâng cao kỹ năng tự học số và cộng tác đa nền tảng không giới hạn.</li>
+                        <li>Chinh phục các môn chuyên ngành phức tạp (Morphology, Linguistics, Syntax) bằng phương pháp học chủ động số hóa.</li>
+                        <li>Nâng cao kỹ năng làm việc nhóm từ xa, làm chủ các công cụ cộng tác trực tuyến như Trello, Discord, Google Drive.</li>
+                        <li>Sử dụng các công cụ AI tạo sinh như ChatGPT, Gemini, DALL-E, Canva AI để bổ trợ sáng tạo tài liệu song ngữ trực quan cho sinh viên.</li>
                     </ul>
                 </div>
                 <div class="goal-box portfolio-goal">
-                    <h3>💡 Mục tiêu của Portfolio</h3>
+                    <h3>💡 Mục tiêu của Digital Portfolio</h3>
                     <ul>
-                        <li>Hệ thống hóa toàn bộ các bài tập thực hành theo hướng khoa học và sáng tạo nhất.</li>
-                        <li>Trình bày sống động và thực tế quy trình ứng dụng AI có kiểm soát.</li>
-                        <li>Tạo dấu ấn cá nhân chuyên nghiệp, trực quan gửi tới Giảng viên và Đồng nghiệp.</li>
+                        <li>Hệ thống hóa toàn diện các bài tập thực hành cá nhân và dự án nhóm trong môn học Nhập môn Công nghệ số và ứng dụng AI.</li>
+                        <li>Chứng minh năng lực ứng dụng công nghệ thực tế thông qua các nhật ký thao tác và quy trình thiết kế Prompt.</li>
+                        <li>Bảo đảm tinh thần liêm chính học thuật, xác lập ranh giới rõ ràng giữa trợ giúp của công nghệ và chất xám tự thân.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- ================= TRANG DỰ ÁN (PROJECTS - 6 BÀI TẬP) ================= -->
+        <!-- ================= TRANG DỰ ÁN (PROJECTS) ================= -->
         <section id="projects" class="tab-content">
             <div class="projects-intro">
-                <h2>Báo Cáo Sáng Tạo Dự Án</h2>
-                <p>Khám phá chuỗi 6 bài tập rèn luyện tư duy số cốt lõi kết hợp tương tác trực tiếp bên dưới.</p>
+                <h2>Hành Trình Dự Án Thành Phần</h2>
+                <p>Tổng hợp chi tiết 6 bài tập rèn luyện năng lực số kết hợp công cụ tương tác trực quan.</p>
             </div>
 
             <div class="timeline">
@@ -914,39 +979,38 @@
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-title">
-                                <h3>📂 Quản Lý Tệp Tin & Thư Mục (Mục 1.4)</h3>
+                                <h3>📂 Quản Lý Tệp Tin & Thư Mục Tối Ưu (Mục 1.4)</h3>
                             </div>
                             <div class="project-meta">Task 1</div>
                         </div>
                         <div class="project-body">
                             <div class="project-desc">
                                 <h4>Mục tiêu bài tập:</h4>
-                                <p>Xây dựng không gian làm việc số khoa học, ngăn nắp và khoa học bằng cây thư mục phân cấp thông minh.</p>
+                                <p>Thiết lập quy trình tổ chức, thao tác dữ liệu chuẩn chỉ trên máy tính cá nhân để quản lý việc học tập lâu dài tại ULIS.</p>
                                 <h4>Quá trình thực hiện:</h4>
-                                <p>Thiết lập quy tắc đặt tên chuẩn hóa không dấu, nối liền bằng dấu gạch dưới và ghi nhận số hiệu phiên bản để tìm kiếm nhanh chóng.</p>
+                                <p>Sử dụng File Explorer để khởi tạo cấu trúc thư mục logic gốc mang tên <code>ThucHanh_PhamThiThuTrang</code>. Thực hiện chuỗi 12 bước chuẩn hóa: tạo tệp văn bản <code>GhiChu.txt</code>, đổi tên thành <code>GhiChuQuanTrong.txt</code>, gom nhóm vào thư mục con <code>TaiLieu</code>, di chuyển tệp <code>DiChuyen.txt</code>, thử nghiệm xóa, xóa vĩnh viễn và khôi phục từ Recycle Bin.</p>
                                 <div>
-                                    <span class="tag-pill">Cây Thư Mục</span>
-                                    <span class="tag-pill">Chuẩn Hóa Đặt Tên</span>
+                                    <span class="tag-pill">File Explorer</span>
+                                    <span class="tag-pill">Thao Tác Tệp Tin</span>
+                                    <span class="tag-pill">Cấu Trúc Thư Mục</span>
                                 </div>
                             </div>
                             <!-- Khối tương tác: Cho phép click mở thư mục -->
                             <div class="interactive-showcase">
-                                <div class="showcase-title">📂 Trải nghiệm click mở thư mục:</div>
+                                <div class="showcase-title">📂 Thử nghiệm tương tác cây thư mục dự án:</div>
                                 <div class="folder-tree">
-                                    <div class="folder" onclick="toggleFolder('fol-root')">ULIS_HocTap_2026</div>
-                                    <ul class="nested-list" id="fol-root">
+                                    <div class="folder" onclick="toggleFolder('task1-root')">New Volume (D:)</div>
+                                    <ul class="nested-list" id="task1-root">
                                         <li>
-                                            <div class="folder" onclick="toggleFolder('fol-ai')">NhapMon_CongNgheSo_AI</div>
-                                            <ul class="nested-list" id="fol-ai">
-                                                <li class="file">01_BaiTapCaNhan_Portfolio_V1.pdf</li>
-                                                <li class="file">02_TailieuOnTap_HeThongTin.docx</li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <div class="folder" onclick="toggleFolder('fol-anh')">NgonNgu_VanHoa_Anh</div>
-                                            <ul class="nested-list" id="fol-anh">
-                                                <li class="file">British_Literature_Essay_Final.pdf</li>
-                                                <li class="file">Phonetics_Practice_Audio.mp3</li>
+                                            <div class="folder" onclick="toggleFolder('task1-sub')">ThucHanh_PhamThiThuTrang</div>
+                                            <ul class="nested-list" id="task1-sub">
+                                                <li>
+                                                    <div class="folder" onclick="toggleFolder('task1-child')">TaiLieu</div>
+                                                    <ul class="nested-list" id="task1-child">
+                                                        <li class="file">GhiChuQuanTrong.txt (0 KB)</li>
+                                                    </ul>
+                                                </li>
+                                                <li class="file">DiChuyen.txt (0 KB)</li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -968,27 +1032,31 @@
                         </div>
                         <div class="project-body">
                             <div class="project-desc">
+                                <h4>Chủ đề báo cáo:</h4>
+                                <p><strong>"Ảnh hưởng của Trí tuệ nhân tạo (AI) đến việc học tiếng Anh của sinh viên"</strong></p>
                                 <h4>Mục tiêu bài tập:</h4>
-                                <p>Khai thác công cụ Google Scholar bằng toán tử lọc nâng cao và đánh giá chất lượng nguồn tài liệu học thuật.</p>
-                                <h4>Quá trình thực hiện:</h4>
-                                <p>Ứng dụng các toán tử <code>" "</code>, <code>AND</code>, <code>site:</code> để truy quét các bài nghiên cứu về phương pháp học tiếng Anh hiệu quả.</p>
+                                <p>Khai thác thông tin học thuật đa dạng trên Google Scholar và các tạp chí uy tín (Computers & Education, Cambridge, OpenAI...).</p>
+                                <h4>Phương pháp & Tiêu chí:</h4>
+                                <p>Sử dụng toán tử tìm kiếm nâng cao. Đánh giá 10 nguồn tài liệu bằng hệ tiêu chí CRAAP (Tác giả, Cơ quan xuất bản, Phương pháp nghiên cứu, Số lượng trích dẫn, Tính cập nhật) với điểm số tối đa 10.</p>
                                 <div>
+                                    <span class="tag-pill">Hệ Tiêu Chí CRAAP</span>
                                     <span class="tag-pill">Google Scholar</span>
-                                    <span class="tag-pill">Tiêu chuẩn CRAAP</span>
+                                    <span class="tag-pill">Đánh Giá Nguồn Tin</span>
                                 </div>
                             </div>
-                            <!-- Khối tương tác: Tìm kiếm giả định -->
+                            <!-- Khối tương tác: Tìm kiếm giả định & bảng đánh giá tài liệu -->
                             <div class="interactive-showcase">
-                                <div class="showcase-title">🔎 Thử truy vấn tìm học thuật:</div>
+                                <div class="showcase-title">🔎 Kết quả đánh giá nguồn hàng đầu:</div>
                                 <div class="search-demo-container">
                                     <div class="search-bar-sim">
-                                        <input type="text" id="scholarSearchInput" value='"English learning" AND "AI Tools" site:edu' readonly>
-                                        <button onclick="simulateSearch()">Tìm</button>
+                                        <input type="text" id="scholarSearchInput" value='"AI in language learning" AND "ESL"' readonly>
+                                        <button onclick="simulateSearch()">Xem Nguồn</button>
                                     </div>
                                     <div class="search-result-sim" id="searchResultSim">
-                                        <strong>📄 Kết quả từ Scholar (edu):</strong>
-                                        <p style="margin: 5px 0;">"The Role of Generative AI in English Writing Mastery" (2025) <span class="craap-badge">CRAAP: 9.5/10</span></p>
-                                        <span style="font-size: 0.7rem; color: #7209B7;">Thỏa mãn: Mới nhất, uy tín cao từ tổ chức giáo dục (.edu).</span>
+                                        <p style="margin-bottom: 6px;"><strong>1. Zawacki-Richter et al. (2019)</strong> - Bài báo (Meta-analysis) <span class="craap-badge">10/10đ - Trích dẫn rất cao</span></p>
+                                        <p style="margin-bottom: 6px;"><strong>2. Huang et al. (2021)</strong> - Bài báo (Review) <span class="craap-badge">10/10đ - Mới & Uy tín</span></p>
+                                        <p style="margin-bottom: 6px;"><strong>3. Jia et al. (2022)</strong> - Bài báo (Thực nghiệm) <span class="craap-badge">10/10đ - Sát thực tế</span></p>
+                                        <p style="font-size: 0.75rem; color: #7209B7;">Sách chuyên khảo (Luckin, Holmes - 9/10đ) cung cấp nền tảng tốt. Các nguồn Web (OpenAI, Cambridge - 7/10đ) cập nhật nhanh nhưng thiếu trích dẫn nghiên cứu sâu.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1009,23 +1077,31 @@
                         <div class="project-body">
                             <div class="project-desc">
                                 <h4>Mục tiêu bài tập:</h4>
-                                <p>Nắm vững kỹ năng kiến tạo Prompt có cấu trúc chi tiết để đạt kết quả đầu ra có giá trị cao nhất từ mô hình ngôn ngữ lớn.</p>
+                                <p>Sử dụng khung nguyên tắc <strong>C.R.E.A.T.E</strong> để chuyển dịch các câu lệnh đơn giản thành các Prompt nâng cao hỗ trợ học tập môn Hình thái học, Ngôn ngữ học ứng dụng và Ngữ pháp chuyên sâu.</p>
                                 <h4>Quá trình thực hiện:</h4>
-                                <p>Thực nghiệm so sánh giữa Prompt thông thường mơ hồ và Prompt nâng cao bao gồm: Vai trò (Role), Ngữ cảnh (Context), Nhiệm vụ cụ thể (Task) và Định dạng yêu cầu (Format).</p>
+                                <p>Thử nghiệm 3 tác vụ chính: tóm tắt giả thuyết Input Hypothesis (Stephen Krashen), phân biệt Free & Bound Morpheme trong từ học thuật, và thiết kế quiz ôn tập cấu trúc Đảo ngữ (Inversion) chuẩn C1/C2.</p>
                                 <div>
-                                    <span class="tag-pill">Prompt Engineering</span>
-                                    <span class="tag-pill">AI Feedback</span>
+                                    <span class="tag-pill">C.R.E.A.T.E</span>
+                                    <span class="tag-pill">Few-Shot Prompting</span>
+                                    <span class="tag-pill">Linguistics Tutor</span>
                                 </div>
                             </div>
-                            <!-- Khối tương tác: So sánh prompt -->
+                            <!-- Khối tương tác: Switcher xem prompt trước và sau cải tiến cho cả 3 tác vụ -->
                             <div class="interactive-showcase">
-                                <div class="showcase-title">⚡ So sánh sự khác biệt của Prompt:</div>
-                                <div class="prompt-switch">
-                                    <div class="prompt-opt active" id="optRaw" onclick="togglePrompt(true)">Prompt Sơ Sài</div>
-                                    <div class="prompt-opt" id="optAdvanced" onclick="togglePrompt(false)">Prompt Nâng Cao</div>
-                                </div>
-                                <div class="prompt-text-display" id="promptDisplay">
-                                    "Dịch cho tôi bài luận tiếng Anh này sang văn phong trang trọng học thuật nhé."
+                                <div class="prompt-switch-container">
+                                    <select class="task-selector" id="promptTaskSelect" onchange="updatePromptDemo()">
+                                        <option value="krashen">Tác vụ 1: Tóm tắt Krashen's Input Hypothesis</option>
+                                        <option value="morpheme">Tác vụ 2: Phân tích Morpheme (Hình vị)</option>
+                                        <option value="inversion">Tác vụ 3: Quiz Đảo ngữ nâng cao</option>
+                                    </select>
+                                    <div class="prompt-switch">
+                                        <div class="prompt-opt active" id="pOptRaw" onclick="togglePromptLevel('raw')">Cơ Bản</div>
+                                        <div class="prompt-opt" id="pOptImp" onclick="togglePromptLevel('improved')">Cải Tiến</div>
+                                        <div class="prompt-opt" id="pOptAdv" onclick="togglePromptLevel('advanced')">Nâng Cao (C.R.E.A.T.E)</div>
+                                    </div>
+                                    <div class="prompt-text-display" id="promptTextDisplay">
+                                        Đang tải câu lệnh...
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1038,35 +1114,38 @@
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-title">
-                                <h3>🤝 Hợp Tác Trực Tuyến Đa Nền Tảng (Mục 4.4)</h3>
+                                <h3>🤝 Hợp Tác Trực Tuyến & Quản Lý Dự Án Nhóm (Mục 4.4)</h3>
                             </div>
                             <div class="project-meta">Task 4</div>
                         </div>
                         <div class="project-body">
                             <div class="project-desc">
-                                <h4>Mục tiêu bài tập:</h4>
-                                <p>Tổ chức và quản lý tiến trình làm việc nhóm trơn tru, hiện đại bằng không gian làm việc số thống nhất.</p>
-                                <h4>Quá trình thực hiện:</h4>
-                                <p>Sử dụng bảng Kanban để chia nhỏ đầu việc, phân quyền trách nhiệm cụ thể và cập nhật trạng thái thời gian thực.</p>
+                                <h4>Bối cảnh dự án:</h4>
+                                <p>Đảm nhận vai trò Trưởng nhóm điều phối dự án: <strong>"Sự khác biệt từ vựng giữa tiếng Anh-Anh và tiếng Anh Mỹ"</strong> môn Nhập môn Ngôn ngữ học.</p>
+                                <h4>Hệ sinh thái công cụ:</h4>
+                                <p>Phân chia và quản lý tác vụ khoa học qua <strong>Trello</strong>, thảo luận chi tiết qua <strong>Discord</strong> nhóm, soạn thảo cộng tác qua <strong>Google Docs</strong> (theo dõi Version History), và quản trị cấu trúc thư mục nhóm trên <strong>Google Drive</strong>.</p>
+                                <h4>Thách thức & Giải pháp:</h4>
+                                <p>1. Ghim tin nhắn để tránh trôi thông tin trên Discord. 2. Bật chế độ "Suggesting" để tránh sửa đè bài nhau trên Docs. 3. Cấu hình Automation tự động nhắc nhở cập nhật thẻ việc Trello vào tối thứ Ba & thứ Sáu hàng tuần.</p>
                                 <div>
-                                    <span class="tag-pill">Trello / Notion</span>
-                                    <span class="tag-pill">Agile Kanban</span>
+                                    <span class="tag-pill">Trello Kanban</span>
+                                    <span class="tag-pill">Discord Coordination</span>
+                                    <span class="tag-pill">Google Docs Suggesting</span>
                                 </div>
                             </div>
                             <!-- Khối tương tác: Kanban thu nhỏ -->
                             <div class="interactive-showcase">
-                                <div class="showcase-title">📊 Click vào thẻ để chuyển trạng thái công việc:</div>
+                                <div class="showcase-title">📊 Mô phỏng tiến trình phân phối việc:</div>
                                 <div class="kanban-board">
                                     <div class="kanban-col">
-                                        <h5>To-do 📌</h5>
+                                        <h5>Cần làm 📌</h5>
                                         <div id="todoArea"></div>
                                     </div>
                                     <div class="kanban-col">
-                                        <h5>Doing 🏃‍♀️</h5>
+                                        <h5>Đang làm 🏃‍♀️</h5>
                                         <div id="doingArea"></div>
                                     </div>
                                     <div class="kanban-col">
-                                        <h5>Done 🎉</h5>
+                                        <h5>Hoàn thành 🎉</h5>
                                         <div id="doneArea"></div>
                                     </div>
                                 </div>
@@ -1081,30 +1160,36 @@
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-title">
-                                <h3>🎨 Sáng Tạo Nội Dung Bằng Generative AI (Mục 5.4)</h3>
+                                <h3>🎨 Sáng Tạo Nội Dung Bằng AI Tạo Sinh (Mục 5.4)</h3>
                             </div>
                             <div class="project-meta">Task 5</div>
                         </div>
                         <div class="project-body">
                             <div class="project-desc">
-                                <h4>Mục tiêu bài tập:</h4>
-                                <p>Ứng dụng AI tạo ảnh và biên tập để sinh ra các ấn phẩm truyền thông, áp dụng thiết thực cho hoạt động quảng bá văn hóa Anh.</p>
-                                <h4>Quá trình thực hiện:</h4>
-                                <p>Sử dụng các nguồn AI thông minh, phối kết hợp nhiều chất liệu ảnh vẽ huyền ảo tạo điểm nhấn nghệ thuật độc đáo.</p>
+                                <h4>Ý tưởng sáng tạo:</h4>
+                                <p>Xây dựng bài viết infographic hấp dẫn trên Blog tự học: <strong>"Sự thú vị của các thành ngữ về màu sắc trong tiếng Anh (English Color Idioms)"</strong> để giúp sinh viên dễ dàng ghi nhớ từ vựng qua hình ảnh trực quan sinh động.</p>
+                                <h4>Sự kết hợp công cụ:</h4>
+                                <p><strong>Google Gemini</strong> lên nội dung cốt lõi và ý tưởng. <strong>DALL-E 3</strong> vẽ minh họa theo nghĩa đen cực hài hước (ví dụ: vẽ Mặt trăng xanh lè buồn bã cho thành ngữ "Out of the blue"). <strong>Canva AI</strong> hỗ trợ phối màu sắc pastel đồng bộ.</p>
+                                <h4>Dấu ấn cá nhân (Đóng góp >50%):</h4>
+                                <p>Tự viết lại 60% nội dung thô của AI, bổ sung nguồn gốc lịch sử thành ngữ "Once in a blue moon" và lồng ghép các ví dụ thực tế liên quan đến đời sống sinh viên ULIS.</p>
                                 <div>
-                                    <span class="tag-pill">Generative AI Art</span>
-                                    <span class="tag-pill">Digital Poster</span>
+                                    <span class="tag-pill">Gemini</span>
+                                    <span class="tag-pill">DALL-E 3 Poster</span>
+                                    <span class="tag-pill">Canva Magic Design</span>
                                 </div>
                             </div>
-                            <!-- Khối tương tác: Trình phát sinh hình ảnh phong cách AI -->
+                            <!-- Khối tương tác: Trình chiếu tác phẩm Infographic từ DALL-E 3 & Canva -->
                             <div class="interactive-showcase">
-                                <div class="showcase-title">🪄 Đổi Phong Cách Tranh Vẽ Bằng AI:</div>
+                                <div class="showcase-title">🪄 Xem Ấn Phẩm Blog Của Thu Trang:</div>
                                 <div class="ai-creator-container">
-                                    <div class="artwork-canvas" id="artCanvas">🌸📚</div>
+                                    <div class="artwork-canvas" id="artCanvas">
+                                        <div class="artwork-icon">🌕</div>
+                                        <div class="artwork-text">English Color Idioms: OUT OF THE BLUE</div>
+                                        <div style="font-size:0.65rem; color:#888; margin-top:5px;">"A sad fluorescent blue moon sitting on a cloud in the starry night sky"</div>
+                                    </div>
                                     <div class="ai-controls">
-                                        <button class="ai-style-btn active" onclick="changeArtStyle('classic', this)">Cổ Điển</button>
-                                        <button class="ai-style-btn" onclick="changeArtStyle('cyber', this)">Cyberpunk</button>
-                                        <button class="ai-style-btn" onclick="changeArtStyle('soft', this)">Dreamy Pastel</button>
+                                        <button class="ai-style-btn active" onclick="changeArtStyle('out', this)">Idiom: Out of the blue</button>
+                                        <button class="ai-style-btn" onclick="changeArtStyle('moon', this)">Idiom: Once in a blue moon</button>
                                     </div>
                                 </div>
                             </div>
@@ -1125,29 +1210,40 @@
                         <div class="project-body">
                             <div class="project-desc">
                                 <h4>Mục tiêu bài tập:</h4>
-                                <p>Phát triển tư duy tự giác, liêm chính học thuật và định vị ranh giới hành vi khi đồng hành cùng công cụ trí tuệ nhân tạo.</p>
-                                <h4>Quá trình thực hiện:</h4>
-                                <p>Đúc kết bộ nguyên tắc 3 điểm cốt lõi để phòng tránh nguy cơ đạo văn vô ý, kiểm chứng nguồn tài liệu cẩn thận.</p>
+                                <p>Nghiên cứu chính sách liêm chính học thuật của ĐHQGHN/ULIS và định hình hành vi sử dụng công nghệ số một cách tự giác và trung thực.</p>
+                                <h4>Thực hiện nhiệm vụ học tập:</h4>
+                                <p>Ứng dụng Gemini hỗ trợ làm khung bài thuyết trình 10 phút môn Kỹ năng Thực hành tiếng về chủ đề "Phương pháp học từ vựng qua ngữ cảnh". Chỉ giữ lại 30% ý tưởng khung của AI, tự biên tập lại 70% nội dung và lồng ghép ví dụ từ chính giáo trình học trên lớp.</p>
+                                <h4>Bộ 5 nguyên tắc "sống còn" tự xây dựng:</h4>
+                                <p>Luôn đặt tính trung thực lên trên hết và kiểm soát mức độ can thiệp của AI trong mọi sản phẩm nộp.</p>
                                 <div>
-                                    <span class="tag-pill">Liêm chính số</span>
-                                    <span class="tag-pill">Academic Integrity</span>
+                                    <span class="tag-pill">Liêm Chính Học Thuật</span>
+                                    <span class="tag-pill">Cẩm Nang Sử Dụng AI</span>
+                                    <span class="tag-pill">Tư Duy Độc Lập</span>
                                 </div>
                             </div>
                             <!-- Khối tương tác: Khám phá nguyên tắc bằng Accordion -->
                             <div class="interactive-showcase">
-                                <div class="showcase-title">🛡️ Bộ quy tắc liêm chính học thuật:</div>
+                                <div class="showcase-title">🛡️ Khám phá bộ 5 nguyên tắc của Thu Trang:</div>
                                 <div class="ethics-list">
                                     <div>
-                                        <div class="ethics-header" onclick="toggleEthics(0)"><span>1. Nguyên tắc Trích Nguồn</span> <span>▼</span></div>
-                                        <div class="ethics-body">Mọi ý tưởng xuất phát hoặc dựa trên gợi ý từ AI đều phải chú thích rõ ràng nguồn công cụ và mục đích sử dụng.</div>
+                                        <div class="ethics-header" onclick="toggleEthics(0)"><span>1. Nguyên tắc 30/70</span> <span>▼</span></div>
+                                        <div class="ethics-body">Chất xám đóng góp của trí tuệ nhân tạo (AI) chỉ được phép chiếm tối đa 30% trong tổng thể sản phẩm cuối cùng.</div>
                                     </div>
                                     <div style="margin-top:5px;">
-                                        <div class="ethics-header" onclick="toggleEthics(1)"><span>2. Nguyên tắc Kiểm Chứng Fact</span> <span>▼</span></div>
-                                        <div class="ethics-body">AI có thể đưa ra thông tin sai lệch (ảo giác). Mọi số liệu thực tế bắt buộc phải được đối chiếu chéo với các nguồn hàn lâm chính thống.</div>
+                                        <div class="ethics-header" onclick="toggleEthics(1)"><span>2. Nguyên tắc Hoài nghi</span> <span>▼</span></div>
+                                        <div class="ethics-body">Tuyệt đối không tin tưởng AI 100%. Luôn đối chiếu, kiểm chứng thông tin thực tế từ các nguồn chính thống và bài báo khoa học đáng tin cậy.</div>
                                     </div>
                                     <div style="margin-top:5px;">
-                                        <div class="ethics-header" onclick="toggleEthics(2)"><span>3. Nguyên tắc Đồng Tác Giả</span> <span>▼</span></div>
-                                        <div class="ethics-body">Sử dụng AI như người trợ lý khơi gợi cảm hứng, không giao khoán hay lạm dụng AI thay thế tư duy sáng tạo độc lập của bản thân.</div>
+                                        <div class="ethics-header" onclick="toggleEthics(2)"><span>3. Nguyên tắc Không sao chép</span> <span>▼</span></div>
+                                        <div class="ethics-body">Không bao giờ copy-paste nguyên văn văn bản do AI sinh ra vào bài nộp. Mọi ý kiến, kiến thức phải được viết lại bằng ngôn từ tự nhiên và tư duy của riêng mình.</div>
+                                    </div>
+                                    <div style="margin-top:5px;">
+                                        <div class="ethics-header" onclick="toggleEthics(3)"><span>4. Nguyên tắc Minh bạch</span> <span>▼</span></div>
+                                        <div class="ethics-body">Luôn ghi chú rõ ràng nguồn gốc công cụ AI đã sử dụng và câu lệnh (Prompt) tương ứng trong phần tài liệu tham khảo hoặc slide thuyết trình.</div>
+                                    </div>
+                                    <div style="margin-top:5px;">
+                                        <div class="ethics-header" onclick="toggleEthics(4)"><span>5. Nguyên tắc Nỗ lực trước</span> <span>▼</span></div>
+                                        <div class="ethics-body">Chỉ tìm đến AI để mở rộng ý tưởng khi bản thân đã thực sự chủ động đọc tài liệu, giáo trình và suy nghĩ độc lập về bài tập trước đó.</div>
                                     </div>
                                 </div>
                             </div>
@@ -1163,26 +1259,26 @@
             <div class="reflection-layout">
                 
                 <div class="reflection-card">
-                    <h3>📝 Đúc Kết Hành Trình Sáng Tạo</h3>
-                    <p>Nhìn lại chặng đường hoàn thiện dự án cá nhân này, mình nhận ra việc hòa mình vào thế giới công nghệ số không hề khô khan như tưởng tượng. Ngược lại, việc ứng dụng thông minh các mô hình ngôn ngữ và AI tạo sinh đã mở ra cánh cửa tư duy đa chiều và sáng tạo mới mẻ.</p>
+                    <h3>📝 Đúc Kết Hành Trình Tự Học Số</h3>
+                    <p>Chuỗi bài tập lớn môn Nhập môn Công nghệ số và ứng dụng AI thực sự đã mang lại một trải nghiệm vô cùng quý giá cho một sinh viên năm nhất khoa tiếng Anh tại ULIS như mình. Những kiến thức lý thuyết về ngôn ngữ thô khan giờ đây trở nên sống động và dễ tiếp cận hơn rất nhiều nhờ sự hỗ trợ đắc lực từ AI và phương thức tổ chức khoa học.</p>
                     
-                    <p><strong>💡 Bài học tâm đắc nhất:</strong> Đừng sợ hãi công nghệ mới, hãy học cách đối thoại và làm chủ nó. Việc viết các cấu trúc Prompt chuẩn mực chính là chiếc chìa khóa tối ưu giúp gia tăng hiệu suất tự học vượt bậc.</p>
+                    <p><strong>💡 Bài học tâm đắc nhất:</strong> Công nghệ tạo sinh không tốt cũng không xấu, giá trị thực sự phụ thuộc hoàn toàn vào tư duy và đạo đức học thuật của người ra lệnh. Mình cho AI một câu hỏi có chiều sâu tương xứng với chất xám bỏ ra, chúng ta sẽ nhận về những sản phẩm mang đầy giá trị tri thức.</p>
                     
-                    <p><strong>🔥 Thách thức vượt qua:</strong> Thời gian đầu mình gặp không ít lúng túng khi tổ chức dữ liệu một cách tối giản và logic, nhưng thông qua việc xây dựng cây thư mục gọn gàng, mình đã xử lý triệt để được rào cản này.</p>
+                    <p><strong>🔥 Thách thức đã vượt qua:</strong> Việc làm quen với nhiều nền tảng số cùng một lúc (Trello, Discord, Google Drive, AI tools) lúc đầu khiến mình khá ngợp. Tuy nhiên, bằng sự phối hợp khoa học, sự kiên trì thực nghiệm và các biện pháp tự động hóa nhắc nhở, mình cùng cả nhóm đã phối hợp trơn tru, vượt qua rào cản từ xa một cách xuất sắc.</p>
                 </div>
 
                 <!-- Khối lưu bút tích hợp lưu trữ LocalStorage thực tế -->
                 <div class="guestbook-card">
-                    <h3>💌 Góc Lưu Bút Đáng Yêu</h3>
-                    <p style="font-size: 0.85rem; margin-bottom: 12px;">Hãy gửi một lời khích lệ nhỏ đến Thu Trang nhé! Ý kiến của bạn sẽ xuất hiện ngay lập tức trên tường giấy ghi chú.</p>
+                    <h3>💌 Góc Lưu Bút Dễ Thương</h3>
+                    <p style="font-size: 0.85rem; margin-bottom: 12px;">Hãy để lại lời nhắn khích lệ hoặc góp ý đáng yêu cho Thu Trang tại đây nhé!</p>
                     <input type="text" id="visitorName" class="guest-input" placeholder="Tên của bạn...">
-                    <input type="text" id="visitorMsg" class="guest-input" placeholder="Lời nhắn dễ thương tại đây...">
+                    <input type="text" id="visitorMsg" class="guest-input" placeholder="Lời nhắn ấm áp...">
                     <button class="guest-btn" onclick="addComment()">Gửi Đi ✨</button>
 
                     <div class="comments-list" id="commentsContainer">
                         <!-- Tin nhắn mẫu mặc định -->
                         <div class="comment-node">
-                            <strong>Cô Giáo Thảo:</strong> Portfolio trình bày siêu dễ thương và chỉnh chu lắm Trang ơi! Chúc em luôn học thật giỏi nhé! 🌸
+                            <strong>Bạn cùng lớp ULIS:</strong> Trang thiết kế portfolio xinh xỉu! Phần Prompt Hình thái học cực kỳ hữu ích cho kỳ thi sắp tới của tụi mình luôn á! 🌸
                         </div>
                     </div>
                 </div>
@@ -1195,7 +1291,7 @@
     <!-- FOOTER TRANG WEB -->
     <footer>
         <p>Thực hiện bởi 💖 <strong>Phạm Thị Thu Trang</strong> - Lớp Nhập môn Công nghệ số & AI</p>
-        <p style="font-size: 0.8rem; opacity: 0.7;">© 2026. Made with Pastel Love and HTML/CSS/JS Magic.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7;">© 2026. Made with Pastel Love and AI Academic Integrity.</p>
     </footer>
 
     <!-- CÁC CHUYỂN ĐỘNG & TƯƠNG TÁC JAVASCRIPT -->
@@ -1255,28 +1351,51 @@
             res.style.display = 'block';
         }
 
-        // 6. Bài 3: Công tắc chuyển đổi Prompt
-        function togglePrompt(isRaw) {
-            const optRaw = document.getElementById('optRaw');
-            const optAdv = document.getElementById('optAdvanced');
-            const display = document.getElementById('promptDisplay');
-
-            if (isRaw) {
-                optRaw.classList.add('active');
-                optAdv.classList.remove('active');
-                display.innerText = `"Dịch cho tôi bài luận tiếng Anh này sang văn phong trang trọng học thuật nhé."`;
-            } else {
-                optRaw.classList.remove('active');
-                optAdv.classList.add('active');
-                display.innerHTML = `<strong>[Vai trò]:</strong> Chuyên gia dịch thuật ngôn ngữ học ULIS.<br><strong>[Ngữ cảnh]:</strong> Một bài luận phân tích tác phẩm văn học Anh thời Phục Hưng.<br><strong>[Nhiệm vụ]:</strong> Dịch chọn lọc đoạn văn sang dạng Academic English, tăng cường từ vựng band 7.5+ IELTS.<br><strong>[Định dạng]:</strong> Xuất song ngữ kèm bảng giải thích từ vựng học thuật cốt lõi.`;
+        // 6. Bài 3: Công cụ so sánh Prompt theo Tác vụ và Cấp độ
+        const promptDatabase = {
+            krashen: {
+                raw: `"Tóm tắt bài viết về Krashen’s Input Hypothesis."<br><br><strong>Kết quả từ AI:</strong> Trả về một đoạn văn ngắn 150 từ chung chung như trên mạng, không chia ý và hoàn toàn không có tính ứng dụng thực tế.`,
+                improved: `"Tóm tắt các luận điểm chính của Krashen’s Input Hypothesis trong 300 từ. Chia rõ mục: Định nghĩa, Công thức i+1, và Ý nghĩa với người học."<br><br><strong>Kết quả từ AI:</strong> Rõ ràng hơn nhờ có gạch đầu dòng phân chia thư mục cấu trúc, nhưng nội dung vẫn thuần lý thuyết, chưa sát sườn với sinh viên ngữ văn Anh.`,
+                advanced: `<strong>[C.R.E.A.T.E Prompt]:</strong> "Bạn là Giáo sư Ngôn ngữ học ứng dụng cố vấn cho sinh viên ULIS. Tôi là Trang, sinh viên năm nhất ngành Ngôn ngữ Anh. Hãy tóm tắt học thuyết này theo các bước: 1. Bối cảnh; 2. Giải thích công thức i+1 (rõ i và 1 là gì); 3. Ứng dụng cho kỹ năng Nghe/Đọc của sinh viên chuyên ngữ. Yêu cầu dùng thuật ngữ song ngữ Anh-Việt."<br><br><strong>Kết quả từ AI:</strong> Rất dễ hiểu. Giải nghĩa rõ 'i' là trình độ hiện tại, '1' là kiến thức mới cao hơn một chút. Gợi ý chọn tài liệu nghe đọc có 10-15% từ mới để tiến bộ nhanh nhất.`
+            },
+            morpheme: {
+                raw: `"Morpheme là gì? Phân biệt free và bound morpheme."<br><br><strong>Kết quả từ AI:</strong> Trả về định nghĩa thô cứng trong từ điển và ví dụ quá đỗi quen thuộc ("cats" gồm "cat" và "-s"), không thúc đẩy được tư duy học tập sâu sắc.`,
+                improved: `"Giải thích khái niệm Morpheme trong tiếng Anh. Phân biệt Free và Bound Morpheme bằng một bảng so sánh, kèm 3 ví dụ cho mỗi loại."<br><br><strong>Kết quả từ AI:</strong> Bố cục bảng dễ nhìn, trực quan hơn, nhưng AI lại bỏ quên việc phân loại hai nhóm quan trọng bắt buộc phải học là derivational (phái sinh) và inflectional (biến vĩ).`,
+                advanced: `<strong>[C.R.E.A.T.E Prompt]:</strong> "Bạn là Giảng viên dạy môn Morphology tại ULIS. Hãy giải thích Morpheme theo các bước: 1. Phân biệt Morpheme và Word; 2. Lập bảng so sánh Free và Bound Morpheme; 3. Hướng dẫn cách phân tích từ 'unhappiness' và 'disestablishment'. Mẫu: Từ 'reopened' gồm 3 hình vị: 're-' (bound, derivational), 'open' (free, lexical), '-ed' (bound, inflectional)."<br><br><strong>Kết quả từ AI:</strong> Nhờ có cấu trúc Few-shot (ví dụ mẫu), AI bóc tách cực chuẩn từ phức tạp 'disestablishment' thành: dis- (bound, derivational), establish (free, lexical), -ment (bound, derivational), hỗ trợ tối đa việc giải bài tập trên lớp.`
+            },
+            inversion: {
+                raw: `"Tạo câu hỏi trắc nghiệm ôn tập về cấu trúc Đảo ngữ tiếng Anh."<br><br><strong>Kết quả từ AI:</strong> Cho ra 5 câu hỏi quá cơ bản với cấu trúc dễ đoán ("Never", "Hardly" đứng đầu câu). Hoàn toàn không kèm đáp án giải thích chi tiết.`,
+                improved: `"Tạo bộ câu hỏi ôn tập Đảo ngữ gồm 5 câu trắc nghiệm và 3 câu viết lại câu. Có đáp án ở cuối bài."<br><br><strong>Kết quả từ AI:</strong> Đề bài đa dạng hơn, nhưng đáp án hiển thị cơ học (1.A, 2.B) không giải thích cấu trúc ngữ pháp làm sinh viên khó tự học hiệu quả.`,
+                advanced: `<strong>[C.R.E.A.T.E Prompt]:</strong> "Bạn là chuyên gia làm đề thi tiếng Anh chuẩn C1/C2. Tôi là sinh viên năm nhất khoa tiếng Anh tại ULIS. Hãy tạo quiz đảo ngữ nâng cao gồm 3 câu trắc nghiệm (đảo ngữ điều kiện hỗn hợp, đảo ngữ cụm giới từ, đảo ngữ với 'Not until...') và 2 câu viết lại câu trang trọng. Phần đáp án phải kèm công thức và mục 'Lưu ý lỗi sai thường gặp'."<br><br><strong>Kết quả từ AI:</strong> Tạo đề chất lượng cao, cảnh báo rõ bẫy ngữ pháp "Not until..." (chỉ đảo ngữ ở mệnh đề thứ hai, giữ nguyên mệnh đề đầu), giúp tránh bẫy khi làm bài kiểm tra thật.`
             }
+        };
+
+        let currentPromptLevel = 'raw';
+
+        function updatePromptDemo() {
+            const task = document.getElementById('promptTaskSelect').value;
+            const display = document.getElementById('promptTextDisplay');
+            display.innerHTML = promptDatabase[task][currentPromptLevel];
         }
 
-        // 7. Bài 4: Quản lý Kanban Board tương tác
+        function togglePromptLevel(level) {
+            currentPromptLevel = level;
+            document.querySelectorAll('.prompt-opt').forEach(opt => opt.classList.remove('active'));
+            
+            if (level === 'raw') document.getElementById('pOptRaw').classList.add('active');
+            else if (level === 'improved') document.getElementById('pOptImp').classList.add('active');
+            else if (level === 'advanced') document.getElementById('pOptAdv').classList.add('active');
+            
+            updatePromptDemo();
+        }
+        updatePromptDemo(); // Khởi tạo ban đầu
+
+        // 7. Bài 4: Quản lý Kanban Board tương tác dự án tiếng Anh-Anh & Anh-Mỹ
         let tasks = [
-            { id: 1, title: "Nghiên cứu tài liệu học thuật", status: "todo" },
-            { id: 2, title: "Thiết kế slide báo cáo nhóm", status: "doing" },
-            { id: 3, title: "Lên dàn ý Portfolio cá nhân", status: "done" }
+            { id: 1, title: "Tìm ví dụ phát âm khác biệt", status: "todo" },
+            { id: 2, title: "Soạn thảo nội dung Google Docs", status: "doing" },
+            { id: 3, title: "Cấu hình tự động Discord - Trello", status: "done" },
+            { id: 4, title: "Sắp xếp thư mục Google Drive", status: "done" }
         ];
 
         function renderKanban() {
@@ -1309,28 +1428,30 @@
         }
         renderKanban();
 
-        // 8. Bài 5: Tương tác nghệ thuật AI
+        // 8. Bài 5: Tương tác đổi tranh thành ngữ phong cách DALL-E 3 & Canva
         function changeArtStyle(style, btn) {
             document.querySelectorAll('.ai-style-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
             const canvas = document.getElementById('artCanvas');
-            if (style === 'classic') {
-                canvas.style.background = 'linear-gradient(45deg, #FFB7B2, #FFDAC1)';
-                canvas.innerHTML = '🌸📚';
-                canvas.style.filter = 'none';
-            } else if (style === 'cyber') {
-                canvas.style.background = 'linear-gradient(135deg, #FF007F, #7B2CBF)';
-                canvas.innerHTML = '👾🌌';
-                canvas.style.filter = 'hue-rotate(90deg) contrast(1.2)';
-            } else if (style === 'soft') {
-                canvas.style.background = 'linear-gradient(60deg, #E8DFFF, #D0E1FD)';
-                canvas.innerHTML = '🧚‍♀️🧁';
-                canvas.style.filter = 'saturate(0.8) brightness(1.1)';
+            if (style === 'out') {
+                canvas.style.background = '#FFF9F2';
+                canvas.innerHTML = `
+                    <div class="artwork-icon">🌕</div>
+                    <div class="artwork-text">English Color Idioms: OUT OF THE BLUE</div>
+                    <div style="font-size:0.65rem; color:#888; margin-top:5px;">"A sad fluorescent blue moon sitting on a cloud in the starry night sky"</div>
+                `;
+            } else if (style === 'moon') {
+                canvas.style.background = '#EEF1FF';
+                canvas.innerHTML = `
+                    <div class="artwork-icon">🌌</div>
+                    <div class="artwork-text">English Color Idioms: ONCE IN A BLUE MOON</div>
+                    <div style="font-size:0.65rem; color:#888; margin-top:5px;">"A mystical blue moon rising over an ancient English library garden"</div>
+                `;
             }
         }
 
-        // 9. Bài 6: Đóng/Mở các bộ quy tắc đạo đức AI (Accordion)
+        // 9. Bài 6: Đóng/Mở bộ quy tắc đạo đức AI (Accordion)
         function toggleEthics(index) {
             const bodies = document.querySelectorAll('.ethics-body');
             const current = bodies[index];
@@ -1364,7 +1485,7 @@
             const msg = msgInput.value.trim();
 
             if (!name || !msg) {
-                alert('Vui lòng nhập đầy đủ tên và lời nhắn nhé! 🐾');
+                alert('Bạn vui lòng điền đầy đủ thông tin để gửi tin nhắn nhé! 🐾');
                 return;
             }
 
