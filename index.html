@@ -231,34 +231,43 @@
             0%, 100% { transform: scale(1); opacity: 0.6; }
             50% { transform: scale(1.2); opacity: 1; }
         }
+        
+        /* Chuyển đổi Khung ảnh đại diện thành Dạng Card đẹp mắt */
         .profile-avatar-wrapper {
             flex-shrink: 0;
             position: relative;
+            transition: var(--transition-soft);
+        }
+        .profile-avatar-wrapper:hover {
+            transform: scale(1.03) rotate(-1deg);
         }
         .profile-avatar {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 5px solid var(--white);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            object-fit: cover;
+            width: 210px;
+            height: 270px;
+            border-radius: 20px; /* Bo góc dạng card */
+            border: 8px solid var(--white); /* Viền Polaroid */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            object-fit: cover; /* Lấp đầy toàn bộ khung card */
             background-color: var(--pastel-pink);
+            display: block;
         }
         .profile-avatar-wrapper::after {
             content: "🎓";
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: -8px;
+            right: -8px;
             font-size: 2rem;
             background: var(--white);
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 2;
         }
+        
         .profile-info {
             flex-grow: 1;
         }
@@ -919,8 +928,8 @@
         <section id="about" class="tab-content active">
             <div class="profile-card">
                 <div class="profile-avatar-wrapper">
-                    <!-- Ảnh đại diện Hình 1.jpg do người dùng upload -->
-                    <img src="Hình 1.jpg" alt="Phạm Thị Thu Trang" class="profile-avatar" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=180&auto=format&fit=crop&q=60';">
+                    <!-- Ảnh đại diện Hình 1.jpg do bạn upload, tự động fill trọn vẹn khung Card -->
+                    <img src="Hình 1.jpg" alt="Phạm Thị Thu Trang" class="profile-avatar" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=210&auto=format&fit=crop&q=60';">
                 </div>
                 <div class="profile-info">
                     <h2>Phạm Thị Thu Trang</h2>
@@ -1169,7 +1178,7 @@
                                 <h4>Ý tưởng sáng tạo:</h4>
                                 <p>Xây dựng bài viết infographic hấp dẫn trên Blog tự học: <strong>"Sự thú vị của các thành ngữ về màu sắc trong tiếng Anh (English Color Idioms)"</strong> để giúp sinh viên dễ dàng ghi nhớ từ vựng qua hình ảnh trực quan sinh động.</p>
                                 <h4>Sự kết hợp công cụ:</h4>
-                                <p><strong>Google Gemini</strong> lên nội dung cốt lõi và ý tưởng. <strong>DALL-E 3</strong> vẽ minh họa theo nghĩa đen cực hài hước (ví dụ: vẽ Mặt trăng xanh lè buồn bã cho thành ngữ "Out of the blue"). <strong>Canva AI</strong> hỗ trợ phối màu sắc pastel đồng bộ.</p>
+                                <p><strong>Google Gemini</strong> lên nội dung cốt lõi và ý tưởng. <strong>DALL-E 3</strong> vẽ minh họa theo nghĩa đơn giản nhất (ví dụ: vẽ Mặt trăng xanh lè buồn bã cho thành ngữ "Out of the blue"). <strong>Canva AI</strong> hỗ trợ phối màu sắc pastel đồng bộ.</p>
                                 <h4>Dấu ấn cá nhân (Đóng góp >50%):</h4>
                                 <p>Tự viết lại 60% nội dung thô của AI, bổ sung nguồn gốc lịch sử thành ngữ "Once in a blue moon" và lồng ghép các ví dụ thực tế liên quan đến đời sống sinh viên ULIS.</p>
                                 <div>
@@ -1295,7 +1304,7 @@
     </footer>
 
     <!-- CÁC CHUYỂN ĐỘNG & TƯƠNG TÁC JAVASCRIPT -->
-    <script>
+    <script {nonce}>
         // 1. Tạo hiệu ứng bong bóng pastel bay nhẹ nhàng trong nền
         function createBubbles() {
             const container = document.getElementById('bubbleContainer');
@@ -1360,7 +1369,7 @@
             },
             morpheme: {
                 raw: `"Morpheme là gì? Phân biệt free và bound morpheme."<br><br><strong>Kết quả từ AI:</strong> Trả về định nghĩa thô cứng trong từ điển và ví dụ quá đỗi quen thuộc ("cats" gồm "cat" và "-s"), không thúc đẩy được tư duy học tập sâu sắc.`,
-                improved: `"Giải thích khái niệm Morpheme trong tiếng Anh. Phân biệt Free và Bound Morpheme bằng một bảng so sánh, kèm 3 ví dụ cho mỗi loại."<br><br><strong>Kết quả từ AI:</strong> Bố cục bảng dễ nhìn, trực quan hơn, nhưng AI lại bỏ quên việc phân loại hai nhóm quan trọng bắt buộc phải học là derivational (phái sinh) và inflectional (biến vĩ).`,
+                improved: `"Giải thích khái niệm Morpheme trong tiếng Anh. Phân biệt Free và Bound Morpheme bằng một bảng so sánh, kèm 3 ví dụ cho mỗi loại."<br><br><strong>Kết quả từ AI:</strong> Bóc tách dạng bảng dễ nhìn, trực quan hơn, nhưng AI lại bỏ quên việc phân loại hai nhóm quan trọng bắt buộc phải học là derivational (phái sinh) và inflectional (biến vĩ).`,
                 advanced: `<strong>[C.R.E.A.T.E Prompt]:</strong> "Bạn là Giảng viên dạy môn Morphology tại ULIS. Hãy giải thích Morpheme theo các bước: 1. Phân biệt Morpheme và Word; 2. Lập bảng so sánh Free và Bound Morpheme; 3. Hướng dẫn cách phân tích từ 'unhappiness' và 'disestablishment'. Mẫu: Từ 'reopened' gồm 3 hình vị: 're-' (bound, derivational), 'open' (free, lexical), '-ed' (bound, inflectional)."<br><br><strong>Kết quả từ AI:</strong> Nhờ có cấu trúc Few-shot (ví dụ mẫu), AI bóc tách cực chuẩn từ phức tạp 'disestablishment' thành: dis- (bound, derivational), establish (free, lexical), -ment (bound, derivational), hỗ trợ tối đa việc giải bài tập trên lớp.`
             },
             inversion: {
@@ -1451,7 +1460,7 @@
             }
         }
 
-        // 9. Bài 6: Đóng/Mở bộ quy tắc đạo đức AI (Accordion)
+        // 9. Bài 6: Đóng/Mở các bộ quy tắc đạo đức AI (Accordion)
         function toggleEthics(index) {
             const bodies = document.querySelectorAll('.ethics-body');
             const current = bodies[index];
