@@ -134,6 +134,7 @@
         nav {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .nav-btn {
             background: var(--white);
@@ -232,7 +233,7 @@
             50% { transform: scale(1.2); opacity: 1; }
         }
         
-        /* Chuyển đổi Khung ảnh đại diện thành Dạng Card đẹp mắt */
+        /* Khung ảnh dạng Card lấp đầy ảnh của bạn */
         .profile-avatar-wrapper {
             flex-shrink: 0;
             position: relative;
@@ -244,10 +245,10 @@
         .profile-avatar {
             width: 210px;
             height: 270px;
-            border-radius: 20px; /* Bo góc dạng card */
-            border: 8px solid var(--white); /* Viền Polaroid */
+            border-radius: 20px;
+            border: 8px solid var(--white);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-            object-fit: cover; /* Lấp đầy toàn bộ khung card */
+            object-fit: cover;
             background-color: var(--pastel-pink);
             display: block;
         }
@@ -364,7 +365,7 @@
             font-size: 0.8rem;
         }
 
-        /* --- TRANG DỰ ÁN (PROJECTS) --- */
+        /* --- TRANG BÀI TẬP (PROJECTS) --- */
         .projects-intro {
             text-align: center;
             margin-bottom: 40px;
@@ -908,8 +909,10 @@
 
             <nav>
                 <button class="nav-btn active" onclick="switchTab('about', this)">🌸 Bản Thân</button>
-                <button class="nav-btn" onclick="switchTab('projects', this)">✨ Dự Án</button>
+                <button class="nav-btn" onclick="switchTab('projects', this)">✨ Bài Tập</button>
                 <button class="nav-btn" onclick="switchTab('reflection', this)">📝 Tổng Kết</button>
+                <!-- Nút liên kết Google Drive trên Thanh Menu -->
+                <a href="https://drive.google.com/drive/folders/1pmJRMktm11oTDjTXq37B04gtFgJEjqzf" target="_blank" class="nav-btn" style="text-decoration: none; border-color: var(--pastel-green); color: #1E4620; display: inline-flex; align-items: center; gap: 6px; font-weight: 700;">📂 GG Drive</a>
             </nav>
 
             <!-- Nút chỉnh tông màu sắc chủ đạo -->
@@ -965,7 +968,7 @@
                 <div class="goal-box portfolio-goal">
                     <h3>💡 Mục tiêu của Digital Portfolio</h3>
                     <ul>
-                        <li>Hệ thống hóa toàn diện các bài tập thực hành cá nhân và dự án nhóm trong môn học Nhập môn Công nghệ số và ứng dụng AI.</li>
+                        <li>Hệ thống hóa toàn diện các bài tập thực hành cá nhân và bài tập nhóm trong môn học Nhập môn Công nghệ số và ứng dụng AI.</li>
                         <li>Chứng minh năng lực ứng dụng công nghệ thực tế thông qua các nhật ký thao tác và quy trình thiết kế Prompt.</li>
                         <li>Bảo đảm tinh thần liêm chính học thuật, xác lập ranh giới rõ ràng giữa trợ giúp của công nghệ và chất xám tự thân.</li>
                     </ul>
@@ -973,10 +976,10 @@
             </div>
         </section>
 
-        <!-- ================= TRANG DỰ ÁN (PROJECTS) ================= -->
+        <!-- ================= TRANG BÀI TẬP (PROJECTS) ================= -->
         <section id="projects" class="tab-content">
             <div class="projects-intro">
-                <h2>Hành Trình Dự Án Thành Phần</h2>
+                <h2>Hành Trình Bài Tập Thành Phần</h2>
                 <p>Tổng hợp chi tiết 6 bài tập rèn luyện năng lực số kết hợp công cụ tương tác trực quan.</p>
             </div>
 
@@ -1006,7 +1009,7 @@
                             </div>
                             <!-- Khối tương tác: Cho phép click mở thư mục -->
                             <div class="interactive-showcase">
-                                <div class="showcase-title">📂 Thử nghiệm tương tác cây thư mục dự án:</div>
+                                <div class="showcase-title">📂 Thử nghiệm tương tác cây thư mục bài tập:</div>
                                 <div class="folder-tree">
                                     <div class="folder" onclick="toggleFolder('task1-root')">New Volume (D:)</div>
                                     <ul class="nested-list" id="task1-root">
@@ -1123,14 +1126,14 @@
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-title">
-                                <h3>🤝 Hợp Tác Trực Tuyến & Quản Lý Dự Án Nhóm (Mục 4.4)</h3>
+                                <h3>🤝 Hợp Tác Trực Tuyến & Quản Lý Bài Tập Nhóm (Mục 4.4)</h3>
                             </div>
                             <div class="project-meta">Task 4</div>
                         </div>
                         <div class="project-body">
                             <div class="project-desc">
-                                <h4>Bối cảnh dự án:</h4>
-                                <p>Đảm nhận vai trò Trưởng nhóm điều phối dự án: <strong>"Sự khác biệt từ vựng giữa tiếng Anh-Anh và tiếng Anh Mỹ"</strong> môn Nhập môn Ngôn ngữ học.</p>
+                                <h4>Bối cảnh bài tập:</h4>
+                                <p>Đảm nhận vai trò Trưởng nhóm điều phối bài tập: <strong>"Sự khác biệt từ vựng giữa tiếng Anh-Anh và tiếng Anh Mỹ"</strong> môn Nhập môn Ngôn ngữ học.</p>
                                 <h4>Hệ sinh thái công cụ:</h4>
                                 <p>Phân chia và quản lý tác vụ khoa học qua <strong>Trello</strong>, thảo luận chi tiết qua <strong>Discord</strong> nhóm, soạn thảo cộng tác qua <strong>Google Docs</strong> (theo dõi Version History), và quản trị cấu trúc thư mục nhóm trên <strong>Google Drive</strong>.</p>
                                 <h4>Thách thức & Giải pháp:</h4>
@@ -1260,6 +1263,13 @@
                     </div>
                 </div>
 
+            </div> <!-- End of .timeline -->
+
+            <!-- Nút liên kết Google Drive ở dưới cùng phần Bài Tập -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://drive.google.com/drive/folders/1pmJRMktm11oTDjTXq37B04gtFgJEjqzf" target="_blank" class="nav-btn" style="display: inline-flex; text-decoration: none; padding: 15px 32px; font-size: 1.1rem; border-color: var(--pastel-green); background-color: var(--pastel-green-light); color: #1E4620; gap: 10px; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(193, 241, 199, 0.4); margin: 0 auto; border-radius: 25px; font-weight: 700; transition: var(--transition-soft);">
+                    📂 Xem Bài Tập GG Drive ✨
+                </a>
             </div>
         </section>
 
